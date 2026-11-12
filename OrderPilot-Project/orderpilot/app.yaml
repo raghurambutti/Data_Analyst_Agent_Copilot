@@ -1,0 +1,13 @@
+# Databricks Apps configuration.
+# In the app's settings, add two resources and give them these keys:
+#   sql-warehouse     -> your SQL warehouse (permission: Can use)
+#   serving-endpoint  -> your chat model endpoint (permission: Can query)
+# Databricks injects the app's own credentials, so no token goes in here.
+command: ["streamlit", "run", "app.py"]
+env:
+  - name: ORDERPILOT_MODE
+    value: "databricks"
+  - name: DATABRICKS_WAREHOUSE_ID
+    valueFrom: sql-warehouse
+  - name: LLM_ENDPOINT
+    valueFrom: serving-endpoint
